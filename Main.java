@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+
 // Classe Membro
 class Membro {
     private int id;
@@ -110,6 +111,7 @@ class Doacao {
     private double valor;
     private Date data;
     private String setor;
+
     // Construtor padrão
     public Doacao() {
     }
@@ -220,49 +222,6 @@ class ProjetoSocial {
     // Método para adicionar doação ao projeto
     public void adicionarDoacao(Doacao doacao) {
         doacoes.add(doacao);
-    }
-}
-
-// Classe Relatorio
-class Relatorio {
-    private int id;
-    private String conteudo;
-    private Date dataGeracao;
-
-    // Construtor padrão
-    public Relatorio() {
-    }
-
-    // Sobrecarga de construtores
-    public Relatorio(int id, String conteudo, Date dataGeracao) {
-        this.id = id;
-        this.conteudo = conteudo;
-        this.dataGeracao = dataGeracao;
-    }
-
-    // Métodos getter e setter
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getConteudo() {
-        return conteudo;
-    }
-
-    public void setConteudo(String conteudo) {
-        this.conteudo = conteudo;
-    }
-
-    public Date getDataGeracao() {
-        return dataGeracao;
-    }
-
-    public void setDataGeracao(Date dataGeracao) {
-        this.dataGeracao = dataGeracao;
     }
 }
 
@@ -383,18 +342,18 @@ public class Main {
     // Método para visualizar doações feitas por um membro existente
     private static void visualizarDoacoesMembroExistente(Scanner scanner, ProjetoSocial projeto) {
         System.out.println("\n===== Visualizar Doações de Membro Existente =====");
-    
+
         // Obter o ID do membro
         System.out.print("Informe o ID do Membro: ");
         int idMembro = scanner.nextInt();
         scanner.nextLine(); // Consumir a quebra de linha pendente
-    
+
         // Obter o membro pelo ID
         Membro membro = obterMembroPorId(projeto, idMembro);
-    
+
         if (membro != null) {
             List<Doacao> doacoesMembro = membro.getDoacoes();
-    
+
             if (doacoesMembro.isEmpty()) {
                 System.out.println("O membro não fez nenhuma doação até o momento.");
             } else {
@@ -411,21 +370,19 @@ public class Main {
             System.out.println("Membro não encontrado.");
         }
     }
-    
-
 
     // Método para fazer nova doação por membro existente
     private static void fazerNovaDoacaoMembroExistente(Scanner scanner, ProjetoSocial projeto) {
         System.out.println("\n===== Fazer Nova Doação por Membro Existente =====");
-    
+
         // Obter o ID do membro
         System.out.print("Informe o ID do Membro: ");
         int idMembro = scanner.nextInt();
         scanner.nextLine(); // Consumir a quebra de linha pendente
-    
+
         // Obter o membro pelo ID
         Membro membro = obterMembroPorId(projeto, idMembro);
-    
+
         if (membro != null) {
             // Exibir os setores disponíveis
             System.out.println("\nEscolha o setor para a doação:");
@@ -434,11 +391,11 @@ public class Main {
             System.out.println("3. Proteção aos Animais");
             System.out.println("4. Assistência a Pessoas em Situação de Vulnerabilidade Socioeconômica");
             System.out.println("5. Apoio a Pessoas com Deficiência");
-    
+
             System.out.print("Escolha um setor: ");
             int escolhaSetor = scanner.nextInt();
             scanner.nextLine(); // Consumir a quebra de linha pendente
-    
+
             // Mapear a escolha do setor para uma string correspondente
             String setor;
             switch (escolhaSetor) {
@@ -462,11 +419,11 @@ public class Main {
                     setor = "Sem Setor Específico";
                     break;
             }
-    
+
             System.out.print("Informe o valor da doação: ");
             double valorDoacao = scanner.nextDouble();
             scanner.nextLine(); // Consumir a quebra de linha pendente
-    
+
             // Realizar a nova doação com o setor escolhido
             membro.fazerNovaDoacao(valorDoacao, projeto, setor);
             System.out.println("Doação realizada com sucesso para o setor: " + setor);
@@ -474,7 +431,7 @@ public class Main {
             System.out.println("Membro não encontrado.");
         }
     }
-    
+
     // Método para obter um membro pelo ID
     private static Membro obterMembroPorId(ProjetoSocial projeto, int idMembro) {
         for (Membro membro : projeto.getMembros()) {
@@ -485,100 +442,100 @@ public class Main {
         return null; // Retorna null se o membro não for encontrado
     }
 
-   private static void gerenciarProjetosSociais(Scanner scanner, ProjetoSocial projeto) {
-    System.out.println("\n===== Gerenciar Projetos Sociais para Membro =====");
+    private static void gerenciarProjetosSociais(Scanner scanner, ProjetoSocial projeto) {
+        System.out.println("\n===== Gerenciar Projetos Sociais para Membro =====");
 
-    // Obter o ID do membro
-    System.out.print("Informe o ID do Membro: ");
-    int idMembro = scanner.nextInt();
-    scanner.nextLine(); // Consumir a quebra de linha pendente
-
-    // Obter o membro pelo ID
-    Membro membro = obterMembroPorId(projeto, idMembro);
-
-    if (membro != null) {
-        // Exibir os setores disponíveis de forma mais formal
-        System.out.println("\nEscolha um setor para participar:");
-
-        // Exibir os setores disponíveis
-        System.out.println("1. Meio Ambiente");
-        System.out.println("2. Assistência a Idosos");
-        System.out.println("3. Proteção aos Animais");
-        System.out.println("4. Assistência a Pessoas em Situação de Vulnerabilidade Socioeconômica");
-        System.out.println("5. Apoio a Pessoas com Deficiência");
-
-        System.out.print("Escolha um setor: ");
-        int escolhaSetor = scanner.nextInt();
+        // Obter o ID do membro
+        System.out.print("Informe o ID do Membro: ");
+        int idMembro = scanner.nextInt();
         scanner.nextLine(); // Consumir a quebra de linha pendente
 
-        // Associar o membro ao setor escolhido
-        switch (escolhaSetor) {
-            case 1:
-                membro.associarSetor("Meio Ambiente");
-                break;
-            case 2:
-                membro.associarSetor("Assistência a Idosos");
-                break;
-            case 3:
-                membro.associarSetor("Proteção aos Animais");
-                break;
-            case 4:
-                membro.associarSetor("Assistência a Pessoas em Situação de Vulnerabilidade Socioeconômica");
-                break;
-            case 5:
-                membro.associarSetor("Apoio a Pessoas com Deficiência");
-                break;
-            default:
-                System.out.println("Escolha inválida.");
+        // Obter o membro pelo ID
+        Membro membro = obterMembroPorId(projeto, idMembro);
+
+        if (membro != null) {
+            // Exibir os setores disponíveis de forma mais formal
+            System.out.println("\nEscolha um setor para participar:");
+
+            // Exibir os setores disponíveis
+            System.out.println("1. Meio Ambiente");
+            System.out.println("2. Assistência a Idosos");
+            System.out.println("3. Proteção aos Animais");
+            System.out.println("4. Assistência a Pessoas em Situação de Vulnerabilidade Socioeconômica");
+            System.out.println("5. Apoio a Pessoas com Deficiência");
+
+            System.out.print("Escolha um setor: ");
+            int escolhaSetor = scanner.nextInt();
+            scanner.nextLine(); // Consumir a quebra de linha pendente
+
+            // Associar o membro ao setor escolhido
+            switch (escolhaSetor) {
+                case 1:
+                    membro.associarSetor("Meio Ambiente");
+                    break;
+                case 2:
+                    membro.associarSetor("Assistência a Idosos");
+                    break;
+                case 3:
+                    membro.associarSetor("Proteção aos Animais");
+                    break;
+                case 4:
+                    membro.associarSetor("Assistência a Pessoas em Situação de Vulnerabilidade Socioeconômica");
+                    break;
+                case 5:
+                    membro.associarSetor("Apoio a Pessoas com Deficiência");
+                    break;
+                default:
+                    System.out.println("Escolha inválida.");
+            }
+
+            System.out.println("Membro associado ao setor com sucesso!");
+        } else {
+            System.out.println("Membro não encontrado.");
         }
-
-        System.out.println("Membro associado ao setor com sucesso!");
-    } else {
-        System.out.println("Membro não encontrado.");
     }
-}
 
-private static void emitirRelatorio(Scanner scanner, ProjetoSocial projeto) {
-    System.out.println("\n===== Emitir Relatório de Atividades de Membro =====");
+    private static void emitirRelatorio(Scanner scanner, ProjetoSocial projeto) {
+        System.out.println("\n===== Emitir Relatório de Atividades de Membro =====");
 
-    // Obter o ID do membro
-    System.out.print("Informe o ID do Membro: ");
-    int idMembro = scanner.nextInt();
-    scanner.nextLine(); // Consumir a quebra de linha pendente
+        // Obter o ID do membro
+        System.out.print("Informe o ID do Membro: ");
+        int idMembro = scanner.nextInt();
+        scanner.nextLine(); // Consumir a quebra de linha pendente
 
-    // Obter o membro pelo ID
-    Membro membro = obterMembroPorId(projeto, idMembro);
+        // Obter o membro pelo ID
+        Membro membro = obterMembroPorId(projeto, idMembro);
 
-    if (membro != null) {
-        // Exibir informações sobre o membro
-        System.out.println("Relatório para o Membro " + membro.getNome() + " (ID: " + membro.getId() + "):");
-        System.out.println("Email: " + membro.getEmail());
-        System.out.println("Telefone: " + membro.getTelefone());
-        System.out.println("Endereço: " + membro.getEndereco());
+        if (membro != null) {
+            // Exibir informações sobre o membro
+            System.out.println("Relatório para o Membro " + membro.getNome() + " (ID: " + membro.getId() + "):");
+            System.out.println("Email: " + membro.getEmail());
+            System.out.println("Telefone: " + membro.getTelefone());
+            System.out.println("Endereço: " + membro.getEndereco());
 
-        // Exibir setores associados
-        List<String> setoresAssociados = membro.getSetoresAssociados();
-        if (!setoresAssociados.isEmpty()) {
-            System.out.println("Setores Associados:");
-            for (String setor : setoresAssociados) {
-                System.out.println("- " + setor);
+            // Exibir setores associados
+            List<String> setoresAssociados = membro.getSetoresAssociados();
+            if (!setoresAssociados.isEmpty()) {
+                System.out.println("Setores Associados:");
+                for (String setor : setoresAssociados) {
+                    System.out.println("- " + setor);
+                }
+            } else {
+                System.out.println("O membro não está associado a nenhum setor.");
+            }
+
+            // Exibir doações feitas pelo membro
+            List<Doacao> doacoesMembro = membro.getDoacoes();
+            if (!doacoesMembro.isEmpty()) {
+                System.out.println("Doações Realizadas:");
+                for (Doacao doacao : doacoesMembro) {
+                    System.out.println("- Valor: " + doacao.getValor() + " | Data: " + doacao.getData());
+                }
+            } else {
+                System.out.println("O membro não fez nenhuma doação até o momento.");
             }
         } else {
-            System.out.println("O membro não está associado a nenhum setor.");
+            System.out.println("Membro não encontrado.");
         }
-
-        // Exibir doações feitas pelo membro
-        List<Doacao> doacoesMembro = membro.getDoacoes();
-        if (!doacoesMembro.isEmpty()) {
-            System.out.println("Doações Realizadas:");
-            for (Doacao doacao : doacoesMembro) {
-                System.out.println("- Valor: " + doacao.getValor() + " | Data: " + doacao.getData());
-            }
-        } else {
-            System.out.println("O membro não fez nenhuma doação até o momento.");
-        }
-    } else {
-        System.out.println("Membro não encontrado.");
     }
-}
 }
